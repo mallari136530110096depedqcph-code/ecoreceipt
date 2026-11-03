@@ -1,3 +1,4 @@
+import os 
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 import sqlite3
 from pathlib import Path
@@ -8,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent
 DB_PATH = BASE_DIR / "ecoreceipt.db"
 
 app = Flask(__name__)
-app.secret_key = "replace-this-with-a-long-random-secret-key"
+app.secret_key = os.environ.get("SECRET_KEY", "dev-only-change-me")
 
 def get_db():
     conn = sqlite3.connect(DB_PATH)
