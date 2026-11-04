@@ -304,6 +304,12 @@ def help_page():
     return render_template("help.html")
 
 
+@app.route("/switch-account", methods=["POST"])
+def switch_account():
+    session.clear()
+    flash("Signed out. Sign in with a different account.", "success")
+    return redirect(url_for("login"))
+
 init_db()
 
 if __name__ == "__main__":
